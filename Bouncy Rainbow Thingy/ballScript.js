@@ -4,7 +4,7 @@ var y=0;
 var vx=5;
 var vy=0;
 
-function init() {
+function start() {
   context= Canvas.getContext('2d');
   setInterval(draw,10);
 }

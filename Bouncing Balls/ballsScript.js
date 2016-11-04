@@ -23,8 +23,8 @@ function draw()
   context.fill();
 
   // Boundary Logic
-if( x<20 || x>580) dx=-dx, dxtemp=dx * Math.floor((Math.random() * 2) + 1);;
-if( y<20 || y>580) dy=-dy, dytemp=dy * Math.floor((Math.random() * 2) + 1);;
+if( x<20 || x>580) dx=-dx, dxtemp=dx * Math.floor((Math.random() * 2) + 1);
+if( y<20 || y>580) dy=-dy, dytemp=dy * Math.floor((Math.random() * 2) + 1);
 x+=dxtemp; 
 y+=dytemp;
 }
