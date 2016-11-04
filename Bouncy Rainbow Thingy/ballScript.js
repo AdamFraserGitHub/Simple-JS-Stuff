@@ -1,17 +1,15 @@
 var context;
 var x=0;
 var y=0;
-var dx=5;
-var dy=0;
+var vx=5;
+var vy=0;
 
-function init()
-{
+function init() {
   context= Canvas.getContext('2d');
   setInterval(draw,10);
 }
 
-function draw()
-{
+function draw() {
   context.clearRect(x,y, 1080,720);
 
   context.beginPath();
@@ -57,8 +55,8 @@ function draw()
   context.fill();
 
   // Boundary Logic
-if( x<0 || x>1060) dx=-dx; 
-if( y<0 || y>460) dy=-dy; 
-x+=dx; 
-y+=dy;
+if( x<0 || x>1060) vx=-vx; 
+if( y<0 || y>460) vy=-vy; 
+x+=vx; 
+y+=vy;
 }
