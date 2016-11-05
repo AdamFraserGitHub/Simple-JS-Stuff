@@ -1,7 +1,5 @@
 
 var context;
-var x1, x2, x3, x4, x5, x6;
-var y1, y2, y3, y4, y5, y6;
 
 function start() {
   //   var w = window.innerWidth;
@@ -9,9 +7,6 @@ function start() {
   //   document.getElementById("Canvas").width = w
   //   document.getElementById("Canvas").height = h
 
-  //makes "Canvas" - the canvas on the Core.html doc - equal the variable
-  //"context" and asigns it as a 2d output
-  context= Canvas.getContext('2d');
   //refreshes draw() function every 5ms
   setInterval(draw,5);
 }
@@ -20,36 +15,15 @@ function draw() {
   context.clearRect(0,0, 1080,720);
   document.getElementById("Canvas").style.backgroundColor = 'rgb(0, 0, 0)';
 
-  //gives xa random value to make points jitter across screen but also to give
-  //points something to refference
-  x1 = Math.floor((Math.random() * 560) + 20);
-  x2 = Math.floor((Math.random() * 560) + 20);
-  x3 = Math.floor((Math.random() * 560) + 20);
-  x4 = Math.floor((Math.random() * 560) + 20);
-  x5 = Math.floor((Math.random() * 560) + 20);
-  x6 = Math.floor((Math.random() * 560) + 20);
+  //calls positionRandomizer function in positionRandomizerScript.js
+  positionRandomizer();
 
-  //gives ya random value to make points jitter across screen but also to give
-  //points something to refference
-  y1 = Math.floor((Math.random() * 560) + 20);
-  y2 = Math.floor((Math.random() * 560) + 20);
-  y3 = Math.floor((Math.random() * 560) + 20);
-  y4 = Math.floor((Math.random() * 560) + 20);
-  y5 = Math.floor((Math.random() * 560) + 20);
-  y6 = Math.floor((Math.random() * 560) + 20);
-
-  //draws arc of r=5 at position xa,ya with centre angle of 2π radians or
-  //360deg = full circle
-  context.beginPath();
-  context.fillStyle="#FF0000";
-  context.arc(x1,y1,5,0,Math.PI*2,true);
-  context.closePath();
-  context.fill();
 
     //draws white line from xa,ya to xb,yb (point 'a' to point 'b')
+ points();
     context.beginPath();
-    context.moveTo(x1, y1);
-    context.lineTo(x2, y2);
+    context.moveTo(x[0], y[0]);
+    context.lineTo(x[1], y[1]);
     context.lineWidth = 1;
     context.strokeStyle = 'rgb(255, 255, 255)';
     context.stroke();
@@ -57,65 +31,46 @@ function draw() {
 
   //stroke('color') show dots of only that color? :)
 
-  context.beginPath();
-  context.fillStyle="#00FF00";
-  context.arc(x2,y2,5,0,Math.PI*2,true);
-  context.closePath();
-  context.fill();
+
 
     context.beginPath();
-    context.moveTo(x2, y2);
-    context.lineTo(x3, y3);
+    context.moveTo(x[1], y[1]);
+    context.lineTo(x[2], y[2]);
     context.lineWidth = 1;
     context.strokeStyle = 'rgb(255, 255, 255)';
     context.stroke();
     context.closePath();
 
-  context.beginPath();
-  context.fillStyle="#0000FF";
-  context.arc(x3,y3,5,0,Math.PI*2,true);
-  context.closePath();
-  context.fill();
+
 
     context.beginPath();
-    context.moveTo(x3, y3);
-    context.lineTo(x4, y4);
+    context.moveTo(x[2], y[2]);
+    context.lineTo(x[3], y[3]);
     context.lineWidth = 1;
     context.strokeStyle = 'rgb(255, 255, 255)';
     context.stroke();
     context.closePath();
 
-  context.beginPath();
-  context.fillStyle="#FFFF00";
-  context.arc(x4,y4,5,0,Math.PI*2,true);
-  context.closePath();
-  context.fill();
+
 
     context.beginPath();
-    context.moveTo(x4, y4);
-    context.lineTo(x5, y5);
+    context.moveTo(x[3], y[3]);
+    context.lineTo(x[4], y[4]);
     context.lineWidth = 1;
     context.strokeStyle = 'rgb(255, 255, 255)';
     context.stroke();
     context.closePath();
 
-  context.beginPath();
-  context.fillStyle="#FF00FF";
-  context.arc(x5,y5,5,0,Math.PI*2,true);
-  context.closePath();
-  context.fill();
+
 
     context.beginPath();
-    context.moveTo(x5, y5);
-    context.lineTo(x6, y6);
+    context.moveTo(x[4], y[4]);
+    context.lineTo(x[5], y[5]);
     context.lineWidth = 1;
     context.strokeStyle = 'rgb(255, 255, 255)';
     context.stroke();
     context.closePath();
 
-  context.beginPath();
-  context.fillStyle="#00FFFF";
-  context.arc(x6,y6,5,0,Math.PI*2,true);
-  context.closePath();
-  context.fill();
+
+
 }

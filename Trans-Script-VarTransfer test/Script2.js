@@ -1,0 +1,1 @@
+outputStr = "output data: " + data;
