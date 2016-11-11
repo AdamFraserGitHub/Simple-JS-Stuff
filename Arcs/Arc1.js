@@ -8,8 +8,8 @@ function start() {
 }
 
 function dynamic() {
-  a = 0;
-  b = Math.PI * 0.5;
+  a = 0
+  b = Math.PI * 1.5
   Context.clearRect(0,0, 1280,720);
   document.getElementById("Canvas").style.backgroundColor = 'rgb(0, 0, 0)';
 
