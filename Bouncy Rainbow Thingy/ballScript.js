@@ -55,8 +55,8 @@ function draw() {
   context.fill();
 
   // Boundary Logic
-if( x<0 || x>1060) vx=-vx; 
-if( y<0 || y>460) vy=-vy; 
-x+=vx; 
+if( x<0 || x>1060) vx=-vx;
+if( y<0 || y>460) vy=-vy;
+x+=vx;
 y+=vy;
 }
