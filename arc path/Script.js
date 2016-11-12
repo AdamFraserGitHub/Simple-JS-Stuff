@@ -1,4 +1,4 @@
-var context
+var context;
 var x,y,xMath,yMath,r,theta,deltaTheta;
 r = 250;
 theta = 0; // pi radians
@@ -6,7 +6,7 @@ deltaTheta = 0.001; // pi radians
 
 function start() {
 
-  context= Canvas.getContext('2d');
+  context = Canvas.getContext('2d');
   setInterval(draw,5);
 }
 
