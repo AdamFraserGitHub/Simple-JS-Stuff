@@ -21,15 +21,8 @@ function draw(){
   x = xMath + 50;
   y = 600 - yMath;
 
-  context.clearRect(0,0, 600,600);
+  context.clearRect(x,y, 10,10);
   document.getElementById("Canvas").style.backgroundColor = 'rgb(0,0,0)';
-
-  context.beginPath();
-  context.lineWidth = 6;
-  context.strokeStyle = 'rgb(0,205,120)';
-  context.arc(300,600,r,Math.PI*1.5,Math.PI*2,true);
-  context.stroke();
-  context.closePath();
 
   context.beginPath();
   context.fillStyle='rgb(255,0,140)';
