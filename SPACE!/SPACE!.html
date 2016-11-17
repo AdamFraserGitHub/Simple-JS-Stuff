@@ -1,0 +1,34 @@
+<html>
+  <body onLoad="start();">
+    <canvas id="Canvas" width="600" height="600">
+    </canvas>
+  </body>
+
+  <script>
+  // ctx = Canvas.getContext('2d');
+
+  function start() {
+    context = Canvas.getContext('2d');
+    setInterval(sensor, 50);
+    var h,w;
+  }
+
+    function sensor(){
+      window.onresize = resiz;
+    }
+
+    function resiz() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+
+      context.canvas.width = w-20;
+      context.canvas.height = h-20;
+
+      context.beginPath();
+      context.fillStyle='rgb(255,0,140)';
+      context.rect(0,0,w-20,h-20);
+      context.closePath();
+      context.fill();
+    }
+  </script>
+</html>
