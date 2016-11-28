@@ -6,7 +6,6 @@ var canvas = document.getElementById("canvas"),
     deltaV = 5,
     keys = [],
     friction = 0.8,
-    gravity = 0.3,
     x = [],
     y = [];
     var player;

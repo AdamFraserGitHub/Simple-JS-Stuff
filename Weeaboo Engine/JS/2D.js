@@ -5,8 +5,6 @@ var libInstalizeTest = {
   }
 }
 
-var drawCircle = {
-  x: 
-  y:
-  r:
+var GameOver = {
+  
 }
