@@ -7,10 +7,12 @@ var canvas = document.getElementById("canvas"),
     keys = [],
     friction = 0.8,
     x = [],
-    y = [];
-    var player;
+    y = [],
+    player,
+    Score = 0
+    Color = 'rgb(0,0,0)';
 
-    NewGame();
+    NewRound();
 
 canvas.width = width;
 canvas.height = height;
@@ -45,26 +47,26 @@ function update(){
 
     ctx.clearRect(0,0,width,height);
 
-  // ctx.fillStyle = 'rgb(255,0,0)';
-  // ctx.fillRect(0,0, width/7,height);
-  //
-  // ctx.fillStyle = 'rgb(255,150,0)';
-  // ctx.fillRect(width/7,0, width/7*2,height);
-  //
-  // ctx.fillStyle = 'rgb(255,255,0)';
-  // ctx.fillRect(width/7*2,0, width/7*3,height);
-  //
-  // ctx.fillStyle = 'rgb(0,255,0)';
-  // ctx.fillRect(width/7*3,0, width/7*4,height);
-  //
-  // ctx.fillStyle = 'rgb(0,255,255)';
-  // ctx.fillRect(width/7*4,0, width/7*5,height);
-  //
-  // ctx.fillStyle = 'rgb(0,0,255)';
-  // ctx.fillRect(width/7*5,0, width/7*6,height);
-  //
-  // ctx.fillStyle = 'rgb(255,0,255)';
-  // ctx.fillRect(width/7*6,0, width,height);
+//   ctx.fillStyle = 'rgb(255,0,0)';
+//   ctx.fillRect(0,0, width/7,height);
+  
+//   ctx.fillStyle = 'rgb(255,150,0)';
+//   ctx.fillRect(width/7,0, width/7*2,height);
+  
+//   ctx.fillStyle = 'rgb(255,255,0)';
+//   ctx.fillRect(width/7*2,0, width/7*3,height);
+  
+//   ctx.fillStyle = 'rgb(0,255,0)';
+//   ctx.fillRect(width/7*3,0, width/7*4,height);
+  
+//   ctx.fillStyle = 'rgb(0,255,255)';
+//   ctx.fillRect(width/7*4,0, width/7*5,height);
+  
+//   ctx.fillStyle = 'rgb(0,0,255)';
+//   ctx.fillRect(width/7*5,0, width/7*6,height);
+  
+//   ctx.fillStyle = 'rgb(255,0,255)';
+//   ctx.fillRect(width/7*6,0, width,height);
 
   ctx.fillStyle = 'rgb(255,0,0)';
   ctx.fillRect(x[0],y[0], 5,20);
@@ -75,6 +77,9 @@ function update(){
   ctx.fillRect(x[5],y[5], 5,20);
   ctx.fillRect(x[6],y[6], 5,20);
 
+  ctx.fillStyle = Color;
+  ctx.font = "12px serif";
+  ctx.fillText(Score, width - 100, 20);
 
   for (var i = 0; i < 7; i++){
     y[i] += 5;
@@ -82,7 +87,7 @@ function update(){
 
   for (var j = 0; j < 7; j++){
     if (y[j] > player.y && y[j] < player.y + 55 && x[j] > player.x && x[j] < player.x + 50){
-        alert("Game Over!");
+        GameOver();
     }
 
     if (y[j] > height){
@@ -90,9 +95,6 @@ function update(){
     }
   }
 
-  // if (y[0] = 20) {
-  //   alert("game over");
-  // }
 
   ctx.fillStyle = 'rgb(0,0,0)';
   ctx.fillRect(player.x,player.y, player.width + 50, player.height + 50);
@@ -122,7 +124,12 @@ window.addEventListener("load",function(){
     update();
 });
 
-function NewGame(){
+function PressOff(){
+    keys[39] = false;
+    keys[37] = false;
+}
+
+function NewRound(){
   player = {
     x : width / 2 - 50,
     y : height / 2 - 50,
@@ -130,9 +137,9 @@ function NewGame(){
     height : 5,
     speed: 3,
     velX: 0
-
-
   };
+
+  PressOff();
 
   for (var i = 0; i< 7; i++){
     x[i] = width/7 * (i + 1);
@@ -142,10 +149,23 @@ function NewGame(){
 }
 
 function Winner(){
-  alert("Wou Win! =D");
-  NewGame();
+  alert("Wou Win! you gain one point =D");
+  Score += 1;
+  if (Score > 0){
+    Color = 'rgb(0,255,0)';
+  } else if (Score == 0){
+      Color = 'rgb(0,0,0)'
+  }
+  NewRound();
 }
 
 function GameOver(){
-  alert("Game Over! =");
+  alert("Game Over! you loose one point =C");
+  Score -= 1;
+  if (Score < 0){
+    Color = 'rgb(255,0,0)';
+  } else if (Score == 0){
+      Color = 'rgb(0,0,0)'
+  }
+  NewRound();
 }
