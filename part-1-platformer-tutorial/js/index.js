@@ -78,8 +78,8 @@ function update(){
   ctx.fillRect(x[6],y[6], 5,20);
 
   ctx.fillStyle = Color;
-  ctx.font = "12px serif";
-  ctx.fillText(Score, width - 100, 20);
+  ctx.font = "20px serif";
+  ctx.fillText("Score: " + Score, width - 100, 20);
 
   for (var i = 0; i < 7; i++){
     y[i] += 5;
