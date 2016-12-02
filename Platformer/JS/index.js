@@ -5,7 +5,8 @@ var charictar, ground, obstacle,
     scrHeight = window.innerHeight - 20,
     keyPress = [],
     Score = 0,
-	Gravity = 0.5;
+	Gravity = 1,
+	gameStart = false;
 
 	document.getElementById("Canvas").width = scrWidth
 	document.getElementById("Canvas").height = scrHeight
@@ -18,7 +19,7 @@ var charictar, ground, obstacle,
 		y:	scrHeight /2 -10 , //10 = charictar.height
 		color:	'rgb(0,100,255)',
 		speed:	2.5,
-		jumpHeight:	200,
+		jumpHeight:	6,
 		vX:	0,
 		vY:	0
 	};
@@ -66,8 +67,10 @@ var charictar, ground, obstacle,
 		ctx.fillRect(obstacle.x,obstacle.y,    obstacle.width,obstacle.height);
 
 		ctx.fillStyle = 'rgb(0,0,0)';
-  		ctx.font = "20px serif";
-  		ctx.fillText(charictar.vY, scrWidth - 100, 20);
+  		ctx.font = "10px serif";
+  		ctx.fillText(charictar.vY, scrWidth - 100, 10);
+		ctx.fillText(charictar.y,	scrWidth - 100, 20);
+		ctx.fillText("scrHeight: " + scrHeight/2,	scrWidth - 100, 30);
 	}
 
 
@@ -83,8 +86,9 @@ var charictar, ground, obstacle,
 		}
 
 		//up
-		if (keyPress[38]){
+		if (keyPress[38] && charictar.y == ground.height - charictar.height){
 			charictar.vY = -charictar.jumpHeight;
+			gameStart = true;
 			
 		}
 
@@ -92,18 +96,35 @@ var charictar, ground, obstacle,
 
 
 	function boundryChecker(){
-		if (charictar.x + charictar.width >= obstacle.x && charictar.y + charictar.height >= obstacle.y){
-			charictar.x = obstacle.x - charictar.width;
+		if (charictar.x + charictar.width >= obstacle.x && charictar.x + charictar.width < obstacle.x + obstacle.width){
+			charictar.vX == 0;
+			// alert("x boundry broken")
+		} else if (charictar.y + charictar.height >= obstacle.y && charictar.x + charictar.width >= obstacle.x && charictar.x + charictar.width < obstacle.x + obstacle.width){
+			charictar.vY == 0;
+			// alert("y boundry broken")
 		}
 	}
 
 
 	function physics(){
-		charictar.y += charictar.vY;
+
+		if (charictar.y <= ground.height - charictar.height){
+			charictar.y += charictar.vY;
+		}
+
+		if (charictar.y == ground.height - charictar.height){
+		}
 
 		if (charictar.vY < 0){
-			charictar.vy += 0.5;
+			charictar.vY += Gravity;
+		} 
+
+		if (charictar.y == scrHeight/2 -charictar.height){
+			charictar.vY = 0;
+		} else if (charictar.vY == 0 && gameStart == true && charictar.y < (scrHeight/2 + charictar.y)){
+			charictar.vY += Gravity;
 		}
+
 	}
 
 
