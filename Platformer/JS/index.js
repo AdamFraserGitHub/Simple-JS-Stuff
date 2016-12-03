@@ -1,6 +1,6 @@
 var charictar, ground, obstacle,
     ctx = Canvas.getContext("2d"),
-	canvas = document.getElementById("canvas"),
+	canvas = document.getElementById("Canvas"),
     scrWidth = window.innerWidth - 20,
     scrHeight = window.innerHeight - 20,
     keyPress = [],
@@ -8,16 +8,16 @@ var charictar, ground, obstacle,
 	Gravity = 1,
 	gameStart = false;
 
-	document.getElementById("Canvas").width = scrWidth
-	document.getElementById("Canvas").height = scrHeight
+	canvas.width = scrWidth
+	canvas.height = scrHeight
 
 	//charictar properties
 	charictar = {
 		width:	10,
 		height:	10,
-		x:	50,
+		x:	scrWidth /4 *3,
 		y:	scrHeight /2 -10 , //10 = charictar.height
-		color:	'rgb(0,100,255)',
+		color:	'rgb(255,225,25)',
 		speed:	2.5,
 		jumpHeight:	6,
 		vX:	0,
@@ -28,9 +28,9 @@ var charictar, ground, obstacle,
 	obstacle = {
 		x:	scrWidth/2 - 50,
 		y:	scrHeight/2 - 15,
-		width:	50,
+		width:	50,	
 		height:	15,
-		color:	'rgb(255,0,0)',
+		color:	'rgb(255,0,145)',
 	};
 
 
@@ -38,7 +38,7 @@ var charictar, ground, obstacle,
 	ground = {
 		height: scrHeight /2,
 		width: 2,
-		color: 'rgb(0,0,0)',
+		color: 'rgb(145,0,255)',
 	};
 
 	setInterval(timer,	1000/60); 
@@ -53,6 +53,9 @@ var charictar, ground, obstacle,
 
 	function draw(){
 		ctx.clearRect(0,0,	scrWidth,scrHeight);
+
+		//Draw BG
+		canvas.style.backgroundColor = 'rgb(20,190,205)';
 
 		//Draw charictar
 		ctx.fillStyle = charictar.color;
@@ -96,13 +99,17 @@ var charictar, ground, obstacle,
 
 
 	function boundryChecker(){
-		if (charictar.x + charictar.width >= obstacle.x && charictar.x + charictar.width < obstacle.x + obstacle.width){
-			charictar.vX == 0;
-			// alert("x boundry broken")
-		} else if (charictar.y + charictar.height >= obstacle.y && charictar.x + charictar.width >= obstacle.x && charictar.x + charictar.width < obstacle.x + obstacle.width){
-			charictar.vY == 0;
-			// alert("y boundry broken")
+			if (obstacle.x <= charictar.x + charictar.width && charictar.x < obstacle.x + obstacle.width /2 && charictar.y + charictar.height > obstacle.y){
+				charictar.x = obstacle.x - charictar.width; 
+			}
+		
+		if(obstacle.x + obstacle.width > charictar.x && charictar.x >= obstacle.x && charictar.y + charictar.height > obstacle.y){
+			charictar.x = obstacle.x + obstacle.width;
 		}
+
+		if(obstacle.y <= charictar.y + charictar.height && charictar.x + charictar.width > obstacle.x && charictar.x < obstacle.x + obstacle.width){
+			charictar.y = obstacle.y - charictar.height;
+		}	
 	}
 
 
