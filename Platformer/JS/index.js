@@ -1,15 +1,13 @@
 var charictar, ground, obstacle,
     ctx = Canvas.getContext("2d"),
 	canvas = document.getElementById("Canvas"),
-    scrWidth = window.innerWidth - 20,
-    scrHeight = window.innerHeight - 20,
+    scrWidth = window.innerWidth,
+    scrHeight = window.innerHeight,
     keyPress = [],
     Score = 0,
 	Gravity = 1,
-	gameStart = false;
-
-	canvas.width = scrWidth
-	canvas.height = scrHeight
+	gameStart = false,
+	yBoundryActive = false;
 
 	//charictar properties
 	charictar = {
@@ -18,7 +16,7 @@ var charictar, ground, obstacle,
 		x:	scrWidth /4 *3,
 		y:	scrHeight /2 -10 , //10 = charictar.height
 		color:	'rgb(255,225,25)',
-		speed:	2.5,
+		speed:	6,
 		jumpHeight:	6,
 		vX:	0,
 		vY:	0
@@ -41,17 +39,30 @@ var charictar, ground, obstacle,
 		color: 'rgb(145,0,255)',
 	};
 
-	setInterval(timer,	1000/60); 
+	setInterval(timer,	1000/30); 
 	
 	function timer(){
+		dynamicDeclerations();
 		draw();
 		controller();
 		boundryChecker();
 		physics();
 	}
 
+	function dynamicDeclerations(){
+
+		//updates scrWidth + scrHeight variables so game scale can change dynamicly
+		scrWidth = window.innerWidth;
+    	scrHeight = window.innerHeight;
+		
+		//reasigns canvas size
+		canvas.width = scrWidth
+		canvas.height = scrHeight
+	}
 
 	function draw(){
+
+		//clears the screen so last frame doesnt stay
 		ctx.clearRect(0,0,	scrWidth,scrHeight);
 
 		//Draw BG
@@ -69,6 +80,7 @@ var charictar, ground, obstacle,
 		ctx.fillStyle = obstacle.color;
 		ctx.fillRect(obstacle.x,obstacle.y,    obstacle.width,obstacle.height);
 
+		//debug panel
 		ctx.fillStyle = 'rgb(0,0,0)';
   		ctx.font = "10px serif";
   		ctx.fillText(charictar.vY, scrWidth - 100, 10);
@@ -91,25 +103,31 @@ var charictar, ground, obstacle,
 		//up
 		if (keyPress[38] && charictar.y == ground.height - charictar.height){
 			charictar.vY = -charictar.jumpHeight;
-			gameStart = true;
-			
+			gameStart = true;	
+		} else if (keyPress[38] && yBoundryActive == true){
+			charictar.vY = -charictar.jumpHeight;
 		}
 
 	}
 
 
 	function boundryChecker(){
-			if (obstacle.x <= charictar.x + charictar.width && charictar.x < obstacle.x + obstacle.width /2 && charictar.y + charictar.height > obstacle.y){
-				charictar.x = obstacle.x - charictar.width; 
-			}
+		if (obstacle.x <= charictar.x + charictar.width && charictar.x < obstacle.x + obstacle.width /2 && charictar.y + charictar.height > obstacle.y){
+			charictar.x = obstacle.x - charictar.width; 
+		}
 		
-		if(obstacle.x + obstacle.width > charictar.x && charictar.x >= obstacle.x && charictar.y + charictar.height > obstacle.y){
+		if (obstacle.x + obstacle.width > charictar.x && charictar.x >= obstacle.x && charictar.y + charictar.height > obstacle.y){
 			charictar.x = obstacle.x + obstacle.width;
 		}
 
-		if(obstacle.y <= charictar.y + charictar.height && charictar.x + charictar.width > obstacle.x && charictar.x < obstacle.x + obstacle.width){
-			charictar.y = obstacle.y - charictar.height;
-		}	
+		if (obstacle.y <= charictar.y + charictar.height && charictar.x + charictar.width > obstacle.x && charictar.x < obstacle.x + obstacle.width && charictar.vY >= 0){
+			// charictar.y = obstacle.y - charictar.height;
+			charictar.vY = 0;
+			yBoundryActive = true;
+		} else {
+			yBoundryActive = false;
+		}
+		
 	}
 
 
@@ -119,14 +137,11 @@ var charictar, ground, obstacle,
 			charictar.y += charictar.vY;
 		}
 
-		if (charictar.y == ground.height - charictar.height){
-		}
-
-		if (charictar.vY < 0){
+		if (charictar.vY != 0){
 			charictar.vY += Gravity;
 		} 
 
-		if (charictar.y == scrHeight/2 -charictar.height){
+		if (charictar.y == ground.height -charictar.height){
 			charictar.vY = 0;
 		} else if (charictar.vY == 0 && gameStart == true && charictar.y < (scrHeight/2 + charictar.y)){
 			charictar.vY += Gravity;
