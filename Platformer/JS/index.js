@@ -1,4 +1,4 @@
-var charictar, ground, obstacle,
+var charictar, ground,
     ctx = Canvas.getContext("2d"),
 	canvas = document.getElementById("Canvas"),
     scrWidth = window.innerWidth,
@@ -22,21 +22,14 @@ var charictar, ground, obstacle,
 		vY:	0
 	};
 
-	//obstacle properties
-	obstacle = {
-		x:	scrWidth/2 - 50,
-		y:	scrHeight/2 - 15,
-		width:	50,	
-		height:	15,
-		color:	'rgb(255,0,145)',
-	};
-
+	blockType[0].x = scrWidth/2 - 50;
+	blockType[0].y = scrHeight/2 - 15;
 
 	//ground properties
 	ground = {
 		height: scrHeight /2,
 		width: 2,
-		color: 'rgb(145,0,255)',
+		color: 'rgb(0,0,0)',
 	};
 
 	setInterval(timer,	1000/30); 
@@ -66,7 +59,7 @@ var charictar, ground, obstacle,
 		ctx.clearRect(0,0,	scrWidth,scrHeight);
 
 		//Draw BG
-		canvas.style.backgroundColor = 'rgb(20,190,205)';
+		canvas.style.backgroundColor = 'rgb(255,255,255)';
 
 		//Draw charictar
 		ctx.fillStyle = charictar.color;
@@ -76,9 +69,9 @@ var charictar, ground, obstacle,
 		ctx.fillStyle = ground.color;
 		ctx.fillRect(0,ground.height,	scrWidth,ground.width);
 
-		//Draw obstacle
-		ctx.fillStyle = obstacle.color;
-		ctx.fillRect(obstacle.x,obstacle.y,    obstacle.width,obstacle.height);
+		//Draw blockType[0]
+		ctx.fillStyle = blockType[0].color;
+		ctx.fillRect(blockType[0].x,blockType[0].y,    blockType[0].width,blockType[0].height);
 
 		//debug panel
 		ctx.fillStyle = 'rgb(0,0,0)';
@@ -112,16 +105,16 @@ var charictar, ground, obstacle,
 
 
 	function boundryChecker(){
-		if (obstacle.x <= charictar.x + charictar.width && charictar.x < obstacle.x + obstacle.width /2 && charictar.y + charictar.height > obstacle.y){
-			charictar.x = obstacle.x - charictar.width; 
+		if (blockType[0].x <= charictar.x + charictar.width && charictar.x < blockType[0].x + blockType[0].width /2 && charictar.y + charictar.height > blockType[0].y){
+			charictar.x = blockType[0].x - charictar.width; 
 		}
 		
-		if (obstacle.x + obstacle.width > charictar.x && charictar.x >= obstacle.x && charictar.y + charictar.height > obstacle.y){
-			charictar.x = obstacle.x + obstacle.width;
+		if (blockType[0].x + blockType[0].width > charictar.x && charictar.x >= blockType[0].x && charictar.y + charictar.height > blockType[0].y){
+			charictar.x = blockType[0].x + blockType[0].width;
 		}
 
-		if (obstacle.y <= charictar.y + charictar.height && charictar.x + charictar.width > obstacle.x && charictar.x < obstacle.x + obstacle.width && charictar.vY >= 0){
-			// charictar.y = obstacle.y - charictar.height;
+		if (blockType[0].y <= charictar.y + charictar.height && charictar.x + charictar.width > blockType[0].x && charictar.x < blockType[0].x + blockType[0].width && charictar.vY >= 0){
+			// charictar.y = blockType[0].y - charictar.height;
 			charictar.vY = 0;
 			yBoundryActive = true;
 		} else {
