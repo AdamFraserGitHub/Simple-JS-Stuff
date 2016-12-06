@@ -7,13 +7,13 @@ var charictar, ground,
     Score = 0,
 	Gravity = 1,
 	gameStart = false,
-	yBoundryActive = false;
+	yBoundryActive = [];
 
 	//charictar properties
 	charictar = {
 		width:	10,
 		height:	10,
-		x:	scrWidth /4 *3,
+		x:	scrWidth /6,
 		y:	scrHeight /2 -10 , //10 = charictar.height
 		color:	'rgb(255,225,25)',
 		speed:	6,
@@ -22,8 +22,12 @@ var charictar, ground,
 		vY:	0
 	};
 
-	blockType[0].x = scrWidth/2 - 50;
+	blockType[0].x = scrWidth/4 - 50;
 	blockType[0].y = scrHeight/2 - 15;
+
+	blockType[1].x = scrWidth/4 * 2 -50
+	blockType[1].y = scrHeight/2 - 15;
+
 
 	//ground properties
 	ground = {
@@ -69,9 +73,13 @@ var charictar, ground,
 		ctx.fillStyle = ground.color;
 		ctx.fillRect(0,ground.height,	scrWidth,ground.width);
 
-		//Draw blockType[0]
+		//Draw normal block
 		ctx.fillStyle = blockType[0].color;
 		ctx.fillRect(blockType[0].x,blockType[0].y,    blockType[0].width,blockType[0].height);
+
+		//Draw bounce block
+		ctx.fillStyle = blockType[1].color;
+		ctx.fillRect(blockType[1].x,blockType[1].y,    blockType[1].width,blockType[1].height);
 
 		//debug panel
 		ctx.fillStyle = 'rgb(0,0,0)';
@@ -97,7 +105,9 @@ var charictar, ground,
 		if (keyPress[38] && charictar.y == ground.height - charictar.height){
 			charictar.vY = -charictar.jumpHeight;
 			gameStart = true;	
-		} else if (keyPress[38] && yBoundryActive == true){
+		} else if (keyPress[38] && yBoundryActive[0] == true){
+			charictar.vY = -charictar.jumpHeight;
+		} else if (keyPress[38] && yBoundryActive[1] == true){
 			charictar.vY = -charictar.jumpHeight;
 		}
 
@@ -105,22 +115,9 @@ var charictar, ground,
 
 
 	function boundryChecker(){
-		if (blockType[0].x <= charictar.x + charictar.width && charictar.x < blockType[0].x + blockType[0].width /2 && charictar.y + charictar.height > blockType[0].y){
-			charictar.x = blockType[0].x - charictar.width; 
-		}
-		
-		if (blockType[0].x + blockType[0].width > charictar.x && charictar.x >= blockType[0].x && charictar.y + charictar.height > blockType[0].y){
-			charictar.x = blockType[0].x + blockType[0].width;
-		}
 
-		if (blockType[0].y <= charictar.y + charictar.height && charictar.x + charictar.width > blockType[0].x && charictar.x < blockType[0].x + blockType[0].width && charictar.vY >= 0){
-			// charictar.y = blockType[0].y - charictar.height;
-			charictar.vY = 0;
-			yBoundryActive = true;
-		} else {
-			yBoundryActive = false;
-		}
-		
+		blockType[0].checkBoundry();
+		blockType[1].checkBoundry();		
 	}
 
 
