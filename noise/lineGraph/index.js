@@ -18,7 +18,7 @@ var c=document.getElementById("Canvas");
 var ctx=c.getContext("2d");
 ctx.beginPath();
 ctx.moveTo(xDis,yDisTemp);
-ctx.lineTo(xDis + 25,250 - yDis);
+ctx.lineTo(xDis,250 - yDis);
 ctx.stroke();
 
 yDisTemp = 250 - yDis

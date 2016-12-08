@@ -34,6 +34,8 @@ var charictar, ground,
 	blockType[3].x = scrWidth/6 + 180 -blockType[3].width;
 	blockType[3].y = scrHeight/2 - blockType[3].drawHeight;
 
+	blockType[4].x = scrWidth/6 + 240 -blockType[4].width;
+	blockType[4].y = scrHeight/2 - blockType[4].height;
 
 	//ground properties
 	ground = {
@@ -41,6 +43,9 @@ var charictar, ground,
 		width: 2,
 		fillColor: 'rgb(0,0,0)',
 	};
+
+	canvas.imageSmoothingEnabled = false;
+
 
 	setInterval(timer,	1000/30); 
 	
@@ -96,6 +101,22 @@ var charictar, ground,
 		//Draw slime block
 		ctx.fillStyle = blockType[3].fillColor;
 		ctx.fillRect(blockType[3].x,blockType[3].y,    blockType[3].width,blockType[3].drawHeight);
+
+		//Draw rainbow block
+		ctx.fillStyle = 'rgb(255,0,0)';
+		ctx.fillRect(blockType[4].x,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(255,150,0)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(255,255,0)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 2,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(0,255,0)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 3,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(0,255,255)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 4,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(0,0,255)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 5,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(255,0,255)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 6,blockType[4].y,		blockType[4].width/7,blockType[4].height);
 
 		//debug panel
 		ctx.fillStyle = 'rgb(0,0,0)';

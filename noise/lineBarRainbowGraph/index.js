@@ -40,7 +40,7 @@ function loopydoo(){
     ctx.beginPath();
     ctx.strokeStyle = lineColor;
     ctx.moveTo(xDis,250);
-    ctx.lineTo(xDis + 5,yDis);
+    ctx.lineTo(xDis,yDis);
     ctx.stroke();
 
     xDis +=5;
