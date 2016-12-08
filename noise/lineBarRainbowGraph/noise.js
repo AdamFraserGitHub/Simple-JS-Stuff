@@ -10,7 +10,7 @@ var Simple1DNoise = function() {
         r.push(Math.random());
     }
 
-    var getVal = function( x ){
+    var getVal = function(x){
         var scaledX = x * scale;
         var xFloor = Math.floor(scaledX);
         var t = scaledX - xFloor;
@@ -18,9 +18,9 @@ var Simple1DNoise = function() {
 
         /// Modulo using &
         var xMin = xFloor & MAX_VERTICES_MASK;
-        var xMax = ( xMin + 1 ) & MAX_VERTICES_MASK;
+        var xMax = (xMin + 1) & MAX_VERTICES_MASK;
 
-        var y = lerp( r[ xMin ], r[ xMax ], tRemapSmoothstep );
+        var y = lerp(r[ xMin ], r[ xMax ], tRemapSmoothstep);
 
         return y * amplitude;
     };
@@ -32,8 +32,8 @@ var Simple1DNoise = function() {
     * t The value between the two
     */
 
-    var lerp = function(a, b, t ) {
-        return a * ( 1 - t ) + b * t;
+    var lerp = function(a, b, t) {
+        return a * (1 - t) + b * t;
     };
 
     // return the API
