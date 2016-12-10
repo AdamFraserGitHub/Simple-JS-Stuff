@@ -22,12 +22,17 @@ blockType[0] = {
 			yBoundryActive[0] = false;
 		}
 
-    }
+    },
+
+	drawBlock: function() {
+		ctx.fillStyle = blockType[0].fillColor;
+		ctx.fillRect(blockType[0].x,blockType[0].y,    blockType[0].width,blockType[0].height);
+	}
 };
 
 
 
-//bounce block
+//bouncy block
 blockType[1] = {
 	x:	'placeholder',
 	y:	'placeholder',
@@ -50,6 +55,11 @@ blockType[1] = {
 			yBoundryActive[1] = false;
 			charictar.jumpHeight = 6;
 		}
+	},
+
+	drawBlock: function() {
+		ctx.fillStyle = blockType[1].fillColor;
+		ctx.fillRect(blockType[1].x,blockType[1].y,    blockType[1].width,blockType[1].height);
 	}
 }
 
@@ -78,12 +88,19 @@ blockType[2] = {
 			yBoundryActive[2] = false;
 		}
 
-    }
+    },
+
+	drawBlock: function() {
+		ctx.strokeStyle = blockType[2].strokeColor;
+		ctx.lineWidth = blockType[2].strokeWidth;
+		ctx.rect(blockType[2].x,blockType[2].y,blockType[2].width,blockType[2].height);
+		ctx.stroke();
+	}
 }
 
 
 
-//sticky block
+//slimy block
 blockType[3] = {
 	x: 'placeholder',
 	y: 'placeholder',
@@ -112,6 +129,11 @@ blockType[3] = {
 				charictar.jumpHeight = 6;
 			}
 		}
+	},
+
+	drawBlock: function() {
+		ctx.fillStyle = blockType[3].fillColor;
+		ctx.fillRect(blockType[3].x,blockType[3].y,    blockType[3].width,blockType[3].drawHeight);
 	}
 };
 
@@ -133,9 +155,28 @@ blockType[4] = {
 		if (this.y <= charictar.y + charictar.height && charictar.x + charictar.width > this.x && charictar.x < this.x + this.width && charictar.vY >= 0){
 			charictar.vY = 0;
 			yBoundryActive[4] = true;
+			clearScreen = false;
 		} else {
 			yBoundryActive[4] = false;
+			clearScreen = true;
 		}
 
-    }
+    },
+
+	drawBlock: function() {
+		ctx.fillStyle = 'rgb(255,0,0)';
+		ctx.fillRect(blockType[4].x,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(255,150,0)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(255,255,0)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 2,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(0,255,0)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 3,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(0,255,255)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 4,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(0,0,255)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 5,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+		ctx.fillStyle = 'rgb(255,0,255)';
+		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 6,blockType[4].y,		blockType[4].width/7,blockType[4].height);
+	}
 };
