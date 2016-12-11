@@ -71,7 +71,7 @@ blockType[2] = {
 	y: 'placeholder',
 	width: 50,
 	height: 15,
-	strokeColor: 'rgba(150,150,150,0.2)',
+	strokeColor: 'rgba(150,150,150,0.25)',
 	strokeWeight: 1,
 
 	checkBoundry: function() {
@@ -91,10 +91,12 @@ blockType[2] = {
     },
 
 	drawBlock: function() {
-		ctx.strokeStyle = blockType[2].strokeColor;
-		ctx.lineWidth = blockType[2].strokeWidth;
-		ctx.rect(blockType[2].x,blockType[2].y,blockType[2].width,blockType[2].height);
+		ctx.beginPath();
+		ctx.strokeStyle = this.strokeColor;
+		ctx.lineWidth = this.strokeWeight;
+		ctx.rect(this.x,this.y,	this.width,this.height);
 		ctx.stroke();
+		ctx.closePath();
 	}
 }
 

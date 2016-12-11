@@ -45,7 +45,7 @@ var charictar, ground,
 		fillColor: 'rgb(0,0,0)',
 	};
 
-	canvas.imageSmoothingEnabled = false;
+	// canvas.imageSmoothingEnabled = false;
 
 
 	setInterval(timer,	1000/30); 
@@ -73,9 +73,13 @@ var charictar, ground,
 
 	function draw(){
 
-		// clears the screen so last frame doesnt stay
+		// clears the screen so last frame doesnt stay while adhering to the rainbow block effect
+		//(will find a better way to implement this cuz this is shite)
 		if (clearScreen){
 			ctx.clearRect(0,0,	scrWidth,scrHeight);
+		} else if (!clearScreen){
+			ctx.clearRect(0,0,	charictar.x,charictar.y + charictar.height);
+			ctx.clearRect(0,charictar.y + charictar.height,	charictar.x,scrHeight);
 		}
 
 		//Draw charictar
