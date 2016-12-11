@@ -78,8 +78,11 @@ var charictar, ground,
 		if (clearScreen){
 			ctx.clearRect(0,0,	scrWidth,scrHeight);
 		} else if (!clearScreen){
-			ctx.clearRect(0,0,	charictar.x,charictar.y + charictar.height);
+			ctx.clearRect(0,0,	charictar.x - 20,charictar.y + charictar.height);
 			ctx.clearRect(0,charictar.y + charictar.height,	charictar.x,scrHeight);
+			ctx.clearRect(charictar.x, 0,	scrWidth - charictar.x,charictar.y + charictar.height);
+			ctx.clearRect(charictar.x, charictar.y + charictar.height,	scrWidth - charictar.x, scrHeight - (charictar.y - charictar.height));
+
 		}
 
 		//Draw charictar
