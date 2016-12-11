@@ -86,8 +86,12 @@ var charictar, ground,
 		}
 
 		//Draw charictar
-		ctx.fillStyle = charictar.fillColor;
-		ctx.fillRect(charictar.x,charictar.y,	charictar.width,charictar.height);
+		if (yBoundryActive[4]){
+			charictarDraw.rainbowSkin();
+		} else {
+			ctx.fillStyle = charictar.fillColor;
+			ctx.fillRect(charictar.x,charictar.y,	charictar.width,charictar.height);
+		}
 
 		//Draw ground
 		ctx.fillStyle = ground.fillColor;

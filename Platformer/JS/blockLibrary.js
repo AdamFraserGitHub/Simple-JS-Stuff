@@ -182,3 +182,22 @@ blockType[4] = {
 		ctx.fillRect(blockType[4].x + blockType[4].width/7 * 6,blockType[4].y,		blockType[4].width/7,blockType[4].height);
 	}
 };
+
+var charictarDraw = {
+	rainbowSkin: function() {
+		ctx.fillStyle = 'rgb(255,0,0)';
+		ctx.fillRect(charictar.x,charictar.y,		charictar.width/7,charictar.height);
+		ctx.fillStyle = 'rgb(255,150,0)';
+		ctx.fillRect(charictar.x + charictar.width/7,charictar.y,		charictar.width/7,charictar.height);
+		ctx.fillStyle = 'rgb(255,255,0)';
+		ctx.fillRect(charictar.x + charictar.width/7 * 2,charictar.y,		charictar.width/7,charictar.height);
+		ctx.fillStyle = 'rgb(0,255,0)';
+		ctx.fillRect(charictar.x + charictar.width/7 * 3,charictar.y,		charictar.width/7,charictar.height);
+		ctx.fillStyle = 'rgb(0,255,255)';
+		ctx.fillRect(charictar.x + charictar.width/7 * 4,charictar.y,		charictar.width/7,charictar.height);
+		ctx.fillStyle = 'rgb(0,0,255)';
+		ctx.fillRect(charictar.x + charictar.width/7 * 5,charictar.y,		charictar.width/7,charictar.height);
+		ctx.fillStyle = 'rgb(255,0,255)';
+		ctx.fillRect(charictar.x + charictar.width/7 * 6,charictar.y,		charictar.width/7,charictar.height);
+	}
+}
