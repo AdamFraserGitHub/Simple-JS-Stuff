@@ -6,7 +6,7 @@ var ctx = Canvas.getContext("2d"),
     xArray = [], yArray = [],
     movtY = 0, movtX = 0;
 
-setInterval(draw,1000/10)
+setInterval(draw,1);
 
 function draw(){
 
@@ -63,5 +63,10 @@ ctx.fillStyle = 'rgb(255,0,255)'
 ctx.fill();
 ctx.closePath()
 
-movtY+=3*radius;
+if (movtY < 6000){
+    movtY+=3*radius;
+} else {
+    movtY = 0;
+    movtX+=3*radius;
+}
 }
