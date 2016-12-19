@@ -56,7 +56,6 @@ function draw(){
     ctx.beginPath();
 
     ctx.arc(regularCenterX + movtX, regularCenterX + movtY, 5, 0, Math.PI*2, false);
-    ctx.arc(xArray[1],yArray[1],0.5,0,Math.PI*2,false);
 
     ctx.fillStyle = 'rgb(255,0,0)';
     ctx.fill();
