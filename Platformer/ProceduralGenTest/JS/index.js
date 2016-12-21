@@ -10,6 +10,8 @@ var charictar, ground,
 	yBoundryActive = [],
 	clearScreen = true;
 
+	document.addEventListener('mousemove', funFunction, false);
+
 	//charictar properties
 	charictar = {
 		width:	10,
@@ -23,30 +25,12 @@ var charictar, ground,
 		vY:	0
 	};
 
-	blockType[0].x = scrWidth/6 -blockType[0].width;
-	blockType[0].y = scrHeight/2 - blockType[0].height;
-
-	blockType[1].x = scrWidth/6 + 60  -blockType[1].width
-	blockType[1].y = scrHeight/2 - blockType[1].height;
-
-	blockType[2].x = scrWidth/6 + 120 -blockType[2].width;
-	blockType[2].y = scrHeight/2 - blockType[2].height;
-
-	blockType[3].x = scrWidth/6 + 180 -blockType[3].width;
-	blockType[3].y = scrHeight/2 - blockType[3].drawHeight;
-
-	blockType[4].x = scrWidth/6 + 240 -blockType[4].width;
-	blockType[4].y = scrHeight/2 - blockType[4].height;
-
 	//ground properties
 	ground = {
 		height: scrHeight /2,
 		width: 2,
 		fillColor: 'rgb(0,0,0)',
 	};
-
-	// canvas.imageSmoothingEnabled = false;
-
 
 	setInterval(timer,	1000/30); 
 	
@@ -97,12 +81,6 @@ var charictar, ground,
 		ctx.fillStyle = ground.fillColor;
 		ctx.fillRect(0,ground.height,	scrWidth,ground.width);
 
-		blockType[0].drawBlock(); //Draw normal block
-		blockType[1].drawBlock(); //Draw bouncy block
-		blockType[2].drawBlock(); //Draw invisible block																								
-		blockType[3].drawBlock(); //Draw slimy block
-		blockType[4].drawBlock(); //Draw rainbow block
-
 		panel(); //debug panel
 
 	}
@@ -133,11 +111,11 @@ var charictar, ground,
 
 
 	function boundryChecker(){
-		blockType[0].checkBoundry(); //Check normal block boundry
-		blockType[1].checkBoundry(); //Check bouncy block boundry
-		blockType[2].checkBoundry(); //Check invisible block boundry
-		blockType[3].checkBoundry(); //Check slimy block boundry
-		blockType[4].checkBoundry(); //Check rainbow block boundry
+		// blockType[0].checkBoundry(); //Check normal block boundry
+		// blockType[1].checkBoundry(); //Check bouncy block boundry
+		// blockType[2].checkBoundry(); //Check invisible block boundry
+		// blockType[3].checkBoundry(); //Check slimy block boundry
+		// blockType[4].checkBoundry(); //Check rainbow block boundry
 	}
 
 
@@ -176,4 +154,12 @@ function keyPressOff(){
 	keyPress[39] = false;
 	keyPress[37] = false;
 	keyPress[38] = false;
+}
+
+function funFunction(){
+	var mouseX = event.clientX;
+    var mousey = event.clientY;
+	if (x > scrWidth/2){
+		alert("YAY!");
+	}
 }
