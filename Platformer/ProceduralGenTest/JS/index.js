@@ -86,13 +86,13 @@ var charictar, ground,
 			panel();
 		}
 
-		ctx.beginPath();
-ctx.fillStyle = 'rgb(0,255,0)';
-for (var i = 1; i < counter; i++){
-    ctx.rect(blockValues[0][i],blockValues[1][i] * 300 - 15,50,15);
-}
-ctx.fill();
-ctx.closePath();
+// 		ctx.beginPath();
+// ctx.fillStyle = 'rgb(0,255,0)';
+// for (var i = 1; i < counter; i++){
+//     ctx.rect(blockValues[0][i],blockValues[1][i] * 300 - 15,50,15);
+// }
+// ctx.fill();
+// ctx.closePath();
 
 	}
 
