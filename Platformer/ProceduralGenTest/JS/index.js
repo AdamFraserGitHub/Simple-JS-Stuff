@@ -8,7 +8,8 @@ var charictar, ground,
 	Gravity = 1,
 	gameStart = false,
 	yBoundryActive = [],
-	clearScreen = true;
+	clearScreen = true,
+	debugPanel = false;
 
 	document.addEventListener('mousemove', funFunction, false);
 
@@ -81,7 +82,17 @@ var charictar, ground,
 		ctx.fillStyle = ground.fillColor;
 		ctx.fillRect(0,ground.height,	scrWidth,ground.width);
 
-		panel(); //debug panel
+		if (debugPanel){
+			panel();
+		}
+
+		ctx.beginPath();
+ctx.fillStyle = 'rgb(0,255,0)';
+for (var i = 1; i < counter; i++){
+    ctx.rect(blockValues[0][i],blockValues[1][i] * 300 - 15,50,15);
+}
+ctx.fill();
+ctx.closePath();
 
 	}
 
@@ -111,11 +122,6 @@ var charictar, ground,
 
 
 	function boundryChecker(){
-		// blockType[0].checkBoundry(); //Check normal block boundry
-		// blockType[1].checkBoundry(); //Check bouncy block boundry
-		// blockType[2].checkBoundry(); //Check invisible block boundry
-		// blockType[3].checkBoundry(); //Check slimy block boundry
-		// blockType[4].checkBoundry(); //Check rainbow block boundry
 	}
 
 
@@ -158,8 +164,10 @@ function keyPressOff(){
 
 function funFunction(){
 	var mouseX = event.clientX;
-    var mousey = event.clientY;
-	if (x > scrWidth/2){
-		alert("YAY!");
+    var mouseY = event.clientY;
+	if (mouseX > scrWidth - 120 && mouseY < 60){
+		debugPanel = true;
+	} else {
+		debugPanel = false;
 	}
 }
