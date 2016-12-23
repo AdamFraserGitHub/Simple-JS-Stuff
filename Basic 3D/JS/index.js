@@ -67,7 +67,7 @@ function render() {
 
     ctx.beginPath();
     ctx.strokeStyle = 'rgb(0,255,0)';
-    ctx.fillStyle = 'rgb(0,255,255)';
+    ctx.fillStyle = 'rgba(0,255,100,0.6)';
     ctx.lineWidth = 1;
 
     ctx.moveTo(square0.xCenter * scrWidth - square0.width * scrWidth, square0.yCenter * scrHeight + square0.height * scrHeight); //bottom left Vertex
@@ -84,21 +84,29 @@ function render() {
 
     ctx.beginPath();
     ctx.strokeStyle = 'rgb(0,255,0)';
-    ctx.fillStyle = 'rgb(0,255,255)';
+    ctx.fillStyle = 'rgba(0,255,100,0.6)';
     ctx.lineWidth = 1;
 
-    ctx.moveTo(square0.xCenter * scrWidth - square0.width * scrWidth / 25, square0.yCenter * scrHeight - square0.height * scrHeight); //top left Vertex
-    ctx.lineTo(square0.xCenter * scrWidth + square0.width * scrWidth / 25, square0.yCenter * scrHeight - square0.height * scrHeight); //top right Vertex
-    ctx.lineTo(square0.xCenter * scrWidth + square0.width * scrWidth / 25, square0.yCenter * scrHeight + square0.height * scrHeight); //bottom right Vertex
-    ctx.lineTo(square0.xCenter * scrWidth - square0.width * scrWidth / 25, square0.yCenter * scrHeight + square0.height * scrHeight); //bottom left Vertex
-    ctx.lineTo(square0.xCenter * scrWidth - square0.width * scrWidth / 25, square0.yCenter * scrHeight - square0.height * scrHeight); //top left Vertex (close)
+    ctx.moveTo(square1.xCenter * scrWidth - square1.width * scrWidth / 5, square1.yCenter * scrHeight - square1.height * scrHeight / 2.5); //top left Vertex
+    ctx.lineTo(square1.xCenter * scrWidth + square1.width * scrWidth / 5, square1.yCenter * scrHeight - square1.height * scrHeight / 2.5); //top right Vertex
+    ctx.lineTo(square1.xCenter * scrWidth + square1.width * scrWidth / 5, square1.yCenter * scrHeight + square1.height * scrHeight); //bottom right Vertex
+    ctx.lineTo(square1.xCenter * scrWidth - square1.width * scrWidth / 5, square1.yCenter * scrHeight + square1.height * scrHeight); //bottom left Vertex
+    ctx.lineTo(square1.xCenter * scrWidth - square1.width * scrWidth / 5, square1.yCenter * scrHeight - square1.height * scrHeight / 2.5); //top left Vertex (close)
 
     ctx.stroke();
     ctx.fill();
     ctx.closePath();
 
-    // square0.width*=0.99;
-    // square0.height*=0.99;
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgb(0,255,0)';
+    ctx.fillStyle = 'rgba(255,0,0,0.6)';
+    ctx.lineWidth = 1;
+
+    ctx.arc(square1.xCenter * scrWidth + square1.width * scrWidth / 6, square1.yCenter * scrHeight + square1.height * scrHeight / 3, 40 * square1.width , 0, Math.PI*2,false);
+
+    ctx.stroke();
+    ctx.fill();
+    ctx.closePath();
 
     square1.width*=0.995;
     square1.height*=0.995;
