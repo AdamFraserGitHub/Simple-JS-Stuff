@@ -5,7 +5,7 @@ var innerSquareX, innerSquareY,
     innerSquareWidth, innerSquareHeight;
 
 var cube = {
-    depth: 250-100, //vanishingPoint.z - depth gives distance from vanishingPoint
+    depth: 500-250, //vanishingPoint.z - depth gives distance from vanishingPoint
     width: 200,
     height: 200,
 
@@ -20,7 +20,7 @@ var cube = {
 var vanishingPoint = {
     x: scrWidth/2,
     y: scrHeight/2,
-    z: 250
+    z: 500
 }
 
 canvas.width = scrWidth;
@@ -71,7 +71,6 @@ function render() {
     ctx.closePath();
 
 }
-
 
 function scrResized() {
     scrWidth = window.innerWidth;
