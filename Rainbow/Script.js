@@ -21,7 +21,7 @@ function draw(){
   x = xMath + 50;
   y = 600 - yMath;
 
-  context.clearRect(x,y, 10,10);
+  context.clearRect(0,0, 600,600);
   document.getElementById("Canvas").style.backgroundColor = 'rgb(0,0,0)';
 
   context.beginPath();
