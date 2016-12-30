@@ -81,16 +81,28 @@ function render() {
 function rotation() {
 
     cube[0][0] = arcPath.radius * Math.cos(Math.PI*theta) + 100;
-    cube[0][2] = arcPath.radius * Math.sin(Math.PI*theta) + 0;
+    cube[0][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta) + 0;
 
     cube[1][0] = arcPath.radius * Math.cos(Math.PI*theta) + cubeSideLen + 100;
-    cube[1][2] = arcPath.radius * Math.sin(Math.PI*theta) + 0;
+    cube[1][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta) + 0;
 
     cube[2][0] = arcPath.radius * Math.cos(Math.PI*theta) + cubeSideLen + 100;
-    cube[2][2] = arcPath.radius * Math.sin(Math.PI*theta) + 0;
+    cube[2][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta) + 0;
 
     cube[3][0] = arcPath.radius * Math.cos(Math.PI*theta) + 0 + 100;
-    cube[3][2] = arcPath.radius * Math.sin(Math.PI*theta) + 0;
+    cube[3][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta) + 0;
+
+    cube[4][0] = arcPath.radius * Math.cos(Math.PI*theta*2) + 100;
+    cube[4][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta*2) + 0;
+
+    cube[5][0] = arcPath.radius * Math.cos(Math.PI*theta*2) + cubeSideLen + 100;
+    cube[5][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta*2) + 0;
+
+    cube[6][0] = arcPath.radius * Math.cos(Math.PI*theta*2) + cubeSideLen + 100;
+    cube[6][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta*2) + 0;
+
+    cube[7][0] = arcPath.radius * Math.cos(Math.PI*theta*2) + 0 + 100;
+    cube[7][2] = Math.sqrt(Math.pow(250, 2) + Math.pow(250/2, 2)) * Math.sin(Math.PI*theta*2) + 0;
 
     theta+=0.001;
 }
@@ -122,19 +134,19 @@ function vertexAsignment() {
 
     cube[4][0] = 0 + 100;
     cube[4][1] = 0 + 100;
-    cube[4][2] = 250;
+    cube[4][2] = cubeSideLen/2;
 
     cube[5][0] = cubeSideLen + 100;
     cube[5][1] = 0 + 100;
-    cube[5][2] = 250;
+    cube[5][2] = cubeSideLen/2;
 
     cube[6][0] = cubeSideLen + 100;
     cube[6][1] = cubeSideLen + 100;
-    cube[6][2] = 250;
+    cube[6][2] = cubeSideLen/2;
 
     cube[7][0] = 0 + 100;
     cube[7][1] = cubeSideLen + 100;
-    cube[7][2] = 250;
+    cube[7][2] = cubeSideLen/2;
     //see root for clarification.png on what each factor of this array means
 }
 
