@@ -27,6 +27,8 @@ var rebounder = {
     Draw: false
 };
 
+var score = 0;
+
 var point = {};
 
 canvas.width = scrWidth;
@@ -66,7 +68,7 @@ function draw(){
 
     ctx.fillStyle = 'rgb(255,255,0)';
     ctx.font="10px Georgia";
-    ctx.fillText("Score: " + 1,scrWidth - 50,10);
+    ctx.fillText("Score: " + score,scrWidth - 50,10);
 
     obstacle.x+=obstacle.Vx;
     obstacle.y+=obstacle.Vy;
@@ -82,6 +84,7 @@ function draw(){
     if(character.x + character.r >= obstacle.x - obstacle.r && character.x - character.r <= obstacle.x + obstacle.r && character.y >= obstacle.y - obstacle.r && character.y - character.r <= obstacle.y + obstacle.r){
         character.Vx = -character.Vx;
         character.Vy = -character.Vy;
+        score++;
     }
 
     if(character.x + character.r >= rebounder.x - rebounder.r && character.x - character.r <= rebounder.x + rebounder.r && character.y >= rebounder.y - rebounder.r && character.y - character.r <= rebounder.y + rebounder.r){
