@@ -9,7 +9,7 @@ var character = {
     y: scrHeight/2,
     r: 10,
     Vx: 1,
-    Vy: 1
+    Vy: 4
 };
 
 var obstacle = {
@@ -21,8 +21,8 @@ var obstacle = {
 };
 
 var rebounder = {
-    x: -50,
-    y: -50,
+    x: 'placeholder',
+    y: 'placeholder',
     r: 10,
     Draw: false
 };
@@ -35,12 +35,7 @@ canvas.width = scrWidth;
 canvas.height = scrHeight;
 canvas.style.backgroundColor = 'rgb(0,0,0)';
 
-setInterval(threads, 1000/60);
-
-function threads(){
-    draw();
-    collisionSensor();
-}
+setInterval(draw, 1000/60);
 
 function draw(){
     ctx.clearRect(0,0,scrWidth,scrHeight);
@@ -78,27 +73,23 @@ function draw(){
     obstacle.x+=obstacle.Vx;
     obstacle.y+=obstacle.Vy;
 
-}
-
-function collisionSensor(){
-    var dx = (character.x + character.r) - (rebounder.x + character.r);
-    var dy = (character.y + character.r) - (rebounder.y + character.r);
-    var distance = Math.sqrt(dx*dx + dy*dy);
-
-    if (distance < character.r + rebounder.r){
-        canvas.style.backgroundColor = 'rgb(255,0,0)';
-        character.Vx = -character.Vx;
-        character.Vy = -character.Vy;
-    } else {
-        canvas.style.backgroundColor = 'rgb(0,0,0)';
-    }
-
     if(character.x + character.r >= scrWidth || character.x - character.r <= 0){
         character.Vx = -character.Vx
     }
 
     if(character.y >= scrHeight - character.r || character.y - character.r <= 0){
         character.Vy = -character.Vy
+    }
+
+    if(character.x + character.r >= obstacle.x - obstacle.r && character.x - character.r <= obstacle.x + obstacle.r && character.y >= obstacle.y - obstacle.r && character.y - character.r <= obstacle.y + obstacle.r){
+        character.Vx = -character.Vx;
+        character.Vy = -character.Vy;
+        score++;
+    }
+
+    if(character.x + character.r >= rebounder.x - rebounder.r && character.x - character.r <= rebounder.x + rebounder.r && character.y >= rebounder.y - rebounder.r && character.y - character.r <= rebounder.y + rebounder.r){
+        character.Vx = -character.Vx;
+        character.Vy = -character.Vy;
     }
 }
 
